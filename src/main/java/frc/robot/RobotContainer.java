@@ -41,7 +41,7 @@ AUTO_EVENT_MAP.put("end", New PrintCommand("passed marker 2"));
 //build auto path commands
 ArrayList<PathPlannerTrajectory> autoPath1 =
         PathPlanner.loadPathGroup(
-            "",
+            name: "autoPath1",
             AUTO_MAX_SPEED_METERS_PER_SECOND,
             AUTO_MAX_ACCELERATION_METERS_PER_SECONDS_SQUARED);
 Command autoTest =
@@ -51,10 +51,18 @@ Command autoTest =
             new WaitCommand(5.0),
             new InstantCommand(drivetrain::enableXstance, drivetrain),
             new FollowPathWithEvents(
-                new FollowPath(autoPath1.get(1), driveTrain, falsa),
+                new FollowPath(autoPath1.get(1), drivetrain, false),
+                autoPath1.get(1).getMarkers(),
                 AUTO_EVENT_MAP)
             );
+          /*   //add comands to the auto chooser
+        autoChooser.addDefaultOption(key:"Do Nothing", new Instand Command());
+            //demonstration of PathPlanner path group with event markers
+            autoChooser.addOption("Test Path", autoTest);
+            //add command for tuning the drive velocity PID
+            addChooser.addOption(
 
+            )*/
 
 
 
